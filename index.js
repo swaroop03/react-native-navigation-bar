@@ -66,7 +66,7 @@ export default class NavigationBar extends Component{
 	}
 
 	_renderTitle(){
-		if(this.props.onTitleTap !== undefined) {
+		if(this.props.onTitlePress !== undefined) {
 			return(
 				<TouchableOpacity onPress={this._onTitleTapHandle.bind(this)}>
 					<View style={styles.title}>
