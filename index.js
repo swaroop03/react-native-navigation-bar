@@ -26,6 +26,7 @@ export default class NavigationBar extends Component{
 		//not include the height of statusBar on ios platform
 		height: PropTypes.number,
 		titleColor: PropTypes.string,
+		onTitlePress: PropTypes.func
 		backgroundColor: PropTypes.string,
 		leftButtonTitle: PropTypes.string,
 		leftButtonTitleColor: PropTypes.string,
@@ -64,6 +65,29 @@ export default class NavigationBar extends Component{
 		};
 	}
 
+	_renderTitle(){
+		if(this.props.onTitleTap !== undefined) {
+			return(
+				<TouchableOpacity onPress={this._onTitleTapHandle.bind(this)}>
+					<View style={styles.title}>
+						<Text style={[styles.titleText, {color: this.state.titleColor}]} numberOfLines={1}>
+							{this.state.title}
+						</Text>
+					</View>
+				</TouchableOpacity>
+			)
+		}
+		else {
+			return(
+				<View style={styles.title}>
+					<Text style={[styles.titleText, {color: this.state.titleColor}]} numberOfLines={1}>
+						{this.state.title}
+					</Text>
+				</View>
+			)
+		}
+	}
+
 	_renderLeftIcon() {
 		if(this.state.leftButtonIcon){
 			return (
@@ -80,6 +104,11 @@ export default class NavigationBar extends Component{
 			);
 		}
 		return null;
+	}
+
+	_onTitleTapHandle(event) {
+		let onPress = this.state.onTitlePress;
+		typeof onPress === 'function' && onPress(event);
 	}
 
 	_onLeftButtonPressHandle(event) {
@@ -109,11 +138,7 @@ export default class NavigationBar extends Component{
 					</View>
 				</TouchableOpacity>
 
-				<View style={styles.title}>
-					<Text style={[styles.titleText, {color: this.state.titleColor}]} numberOfLines={1}>
-						{this.state.title}
-					</Text>
-				</View>
+				{this._renderTitle()}
 
 				<TouchableOpacity onPress={this._onRightButtonPressHandle.bind(this)}>
 					<View style={styles.rightButton}>
@@ -130,7 +155,7 @@ export default class NavigationBar extends Component{
 };
 
 let styles = StyleSheet.create({
-	container: { 
+	container: {
 		flex: 1,
 		position: 'absolute',
 		top: 0,
