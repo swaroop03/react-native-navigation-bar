@@ -26,7 +26,7 @@ export default class NavigationBar extends Component{
 		//not include the height of statusBar on ios platform
 		height: PropTypes.number,
 		titleColor: PropTypes.string,
-		onTitlePress: PropTypes.func
+		onTitlePress: PropTypes.func,
 		backgroundColor: PropTypes.string,
 		leftButtonTitle: PropTypes.string,
 		leftButtonTitleColor: PropTypes.string,
