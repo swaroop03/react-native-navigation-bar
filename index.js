@@ -122,7 +122,7 @@ export default class NavigationBar extends Component{
 	}
 
 	render() {
-		let height = Platform.OS === 'ios' ? this.state.height + 20 : this.state.height;
+		let height = this.state.height;
 		return (
 			<View style={[styles.container, {
 				height: height,
@@ -222,6 +222,15 @@ if(Platform.OS === 'ios'){
 			width: width,
 			paddingTop: 20
 		},
+		title: {
+			flex: 0,
+			flexGrow:1,
+			width: width - 200,
+			height:20,
+			overflow: 'hidden',
+			marginBottom:10,
+			marginTop:-10
+		},
 		rightButton: {
 			flex: 1,
 			flexDirection: 'row',
@@ -229,7 +238,20 @@ if(Platform.OS === 'ios'){
 			alignItems: 'center',
 			width: 90,
 			paddingTop: 1,
-			paddingRight: 8
-		}
+			paddingRight: 8,
+			marginBottom:20
+		},
+		leftButtonIcon: {
+			width: 24,
+			height: 24,
+			marginRight: 6,
+			marginLeft: 10,
+			marginBottom:20
+		},
+		titleText: {
+			fontSize: 18,
+			fontWeight: '600',
+			textAlign:'center'
+		},
 	}
 }
